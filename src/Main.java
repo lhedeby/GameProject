@@ -10,6 +10,12 @@ public class Main {
         game.init();
 
 
+        while(true) {
+            game.loop();
+
+        }
+
+
 
     }
 }
