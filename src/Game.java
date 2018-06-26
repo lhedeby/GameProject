@@ -5,12 +5,14 @@ public class Game {
     Level level;
     GameObject player;
     KeyManager keyManager;
+    Logic logic;
 
     public void init() {
         window = new Window();
         level = new Level(window);
         player = new Player(10,19);
         keyManager = new KeyManager((Player)player, window.getScreen());
+        logic = new Logic((Player)player, level);
 
     }
 
@@ -20,6 +22,7 @@ public class Game {
             window.graphics.drawPlayer(player);
             window.getScreen().refresh();
             keyManager.keyDetector();
+            logic.movePlayer();
             window.getScreen().clear();
 
         }

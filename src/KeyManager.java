@@ -13,6 +13,7 @@ public class KeyManager  {
 
     public void keyDetector(){
         key = screen.readInput();
+        player.setxVelocity(0);
         if (key!=null){
             switch (key.getKind()){
 //                case ArrowUp:
@@ -20,10 +21,10 @@ public class KeyManager  {
 //                case ArrowDown:
 //                    ;
                 case ArrowLeft:
-                    player.movePlayer(-1);
+                    player.setxVelocity(-1);
                     break;
                 case ArrowRight:
-                    player.movePlayer(1);
+                    player.setxVelocity(1);
                     break;
                 case Escape:
                     System.exit(0);

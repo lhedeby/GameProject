@@ -5,6 +5,7 @@ public class Level {
         for(int i = 0; i < window.getWidth(); i++) {
             levelArray[i][20] = 1;
         }
+        levelArray[20] [19] = 1;
     }
 
     public int[][] getLevelArray() {

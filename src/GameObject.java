@@ -5,14 +5,24 @@ public abstract class GameObject {
     protected int x, y;
     protected String symbol;
     protected Terminal.Color color;
-    protected int speed;
+    protected int yVelocity;
+    protected int xVelocity;
 
-    public GameObject(int x, int y, String symbol, Terminal.Color color, int speed) {
+    public void setyVelocity(int yVelocity) {
+        this.yVelocity = yVelocity;
+    }
+
+    public void setxVelocity(int xVelocity) {
+        this.xVelocity = xVelocity;
+    }
+
+    public GameObject(int x, int y, String symbol, Terminal.Color color) {
         this.x = x;
         this.y = y;
         this.symbol = symbol;
         this.color = color;
-        this.speed = speed;
+        this.xVelocity = 0;
+        this.yVelocity = 1;
     }
 
     public int getX() {
