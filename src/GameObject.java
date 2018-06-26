@@ -30,4 +30,5 @@ public abstract class GameObject {
     public Terminal.Color getColor() {
         return color;
     }
+
 }
