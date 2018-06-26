@@ -9,12 +9,7 @@ public class Main {
         Game game = new Game();
         game.init();
 
-
-        while(true) {
-            game.loop();
-
-        }
-
+        game.loop();
 
 
     }
