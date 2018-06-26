@@ -25,6 +25,8 @@ public class KeyManager  {
                 case ArrowRight:
                     player.movePlayer(1);
                     break;
+                case Escape:
+                    System.exit(0);
             }
         }
     }
