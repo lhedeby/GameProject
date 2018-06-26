@@ -1,4 +1,3 @@
-package PACKAGE_NAME;
+public class Items extends GameObject {
 
-public class Items {
 }

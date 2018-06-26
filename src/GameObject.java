@@ -1,4 +1,4 @@
-package PACKAGE_NAME;
+public abstract class GameObject {
+    int x, y;
 
-public class GameObject {
 }
