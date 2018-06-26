@@ -14,4 +14,20 @@ public abstract class GameObject {
         this.color = color;
         this.speed = speed;
     }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public Terminal.Color getColor() {
+        return color;
+    }
 }

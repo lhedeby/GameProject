@@ -1,4 +1,5 @@
 import com.googlecode.lanterna.screen.ScreenWriter;
+import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.Terminal.Color;
 
 public class Graphics {
@@ -12,9 +13,9 @@ public class Graphics {
 
     }
 
-    public void draw(int x, int y, Color color) {
+    public void draw(int x, int y, Color color, String symbol) {
         screenWriter.setBackgroundColor(color);
-        screenWriter.drawString(x, y, " ");
+        screenWriter.drawString(x, y, symbol);
     }
 
     public void drawLevel(Level level) {
@@ -22,9 +23,18 @@ public class Graphics {
         for(int x = 0; x < array.length; x++) {
             for(int y = 0; y < array[x].length; y++) {
                 if(array[x][y] == 1)
-                    draw(x, y, Color.BLUE);
+                    draw(x, y, Color.BLUE, " ");
             }
         }
+    }
+
+    public void drawPlayer(GameObject gameObject){
+        int x = gameObject.getX();
+        int y = gameObject.getY();
+        Terminal.Color color = gameObject.getColor();
+        String symbol = gameObject.getSymbol();
+
+        draw(x,y,color,symbol);
     }
 
 
