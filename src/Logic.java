@@ -1,14 +1,16 @@
 public class Logic {
     Player player;
+    Monster [] monsters;
     Level level;
     int jumpCounter;
     int yNextStep;
     int xNextStep;
     boolean canJump = true;
 
-    public Logic(Player player, Level level) {
+    public Logic(Player player, Level level, Monster[] monsters) {
         this.level = level;
         this.player = player;
+        this.monsters = monsters;
     }
 
     public void movePlayer() {
@@ -59,8 +61,17 @@ public class Logic {
             } else {
                 canJump = true;
             }
-
         }
 
+
+    }
+    public boolean isAlive() {
+        for (int i = 0; i < monsters.length; i++) {
+            if (monsters[i].getX()== player.getX() && monsters[i].getY() == player.getY()){
+                return false;
+            }
+
+        }
+        return true;
     }
 }
