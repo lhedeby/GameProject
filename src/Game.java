@@ -4,7 +4,8 @@ public class Game {
     GameObject player;
     KeyManager keyManager;
     Logic logic;
-    Monster [] monstersArray;
+    Monster[] monstersArray;
+    Goal goal;
 
 
     public void init() {
@@ -12,6 +13,7 @@ public class Game {
         level = new Level(window);
         player = new Player(10,19);
         monstersArray = Monster.createMonsters(level);
+        goal = Goal.createGoal(level);
         keyManager = new KeyManager((Player)player, window.getScreen());
         logic = new Logic((Player)player, level, monstersArray);
         MP3Player.play(".\\src\\supergame.mp3", true);
@@ -24,6 +26,7 @@ public class Game {
             window.graphics.drawLevel(level);
             window.graphics.drawPlayer(player);
             window.graphics.drawMonsters(monstersArray);
+            window.graphics.drawGoal(goal);
             window.getScreen().refresh();
             keyManager.keyDetector();
             logic.movePlayer();
