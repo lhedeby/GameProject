@@ -7,6 +7,7 @@ public class Graphics {
     public Graphics(Window window) {
           screenWriter = new ScreenWriter(window.getScreen());
 
+
     }
 
     public void drawString() {
