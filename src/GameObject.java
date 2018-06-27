@@ -2,7 +2,7 @@ import com.googlecode.lanterna.terminal.Terminal;
 
 public abstract class GameObject {
 
-    protected int x, y;
+    private int x, y;
     protected String symbol;
     protected Terminal.Color color;
     protected int yVelocity;
@@ -25,12 +25,20 @@ public abstract class GameObject {
         this.yVelocity = 1;
     }
 
-    public int getX() {
+    protected int getX() {
         return x;
     }
 
-    public int getY() {
+    protected int getY() {
         return y;
+    }
+
+    protected void setX(int x) {
+        this.x = x;
+    }
+
+    protected void setY(int y) {
+        this.y = y;
     }
 
     public String getSymbol() {
