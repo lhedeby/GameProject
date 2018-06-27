@@ -33,6 +33,7 @@ public class Levelmaker {
                     break;
                 case F3:
                     level.levelArray[x][y] = 2;
+                    break;
                 case ArrowDown:
                     window.getScreen().setCursorPosition(x, ++y);
                     break;

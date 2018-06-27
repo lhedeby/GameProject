@@ -27,6 +27,8 @@ public class Graphics {
                     draw(x, y, Color.GREEN, " ");
                 if(array[x][y] == 0)
                     draw(x, y, Color.BLUE, " ");
+                if(array[x][y] == 2)
+                    draw(x, y, Color.RED, " ");
             }
         }
     }
