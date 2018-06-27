@@ -47,6 +47,10 @@ public class Graphics {
         }
     }
 
+    public void drawGoal(Goal goal){
+        drawPlayer(goal);
+    }
+
     public void gameOver() {
         screenWriter.drawString(20, 10, "------------------------------");
         screenWriter.drawString(20, 11, "|         Game over!         |");
