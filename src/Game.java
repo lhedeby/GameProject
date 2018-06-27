@@ -25,6 +25,11 @@ public class Game {
             logic.movePlayer();
             window.getScreen().clear();
 
+            try{
+                Thread.sleep(100);
+            } catch (InterruptedException e){
+                continue;
+            }
         }
     }
 }

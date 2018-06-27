@@ -16,10 +16,9 @@ public class KeyManager  {
         player.setxVelocity(0);
         if (key!=null){
             switch (key.getKind()){
-//                case ArrowUp:
-//                    ;
-//                case ArrowDown:
-//                    ;
+                case ArrowUp:
+                    player.setyVelocity(-1);
+                    break;
                 case ArrowLeft:
                     player.setxVelocity(-1);
                     break;
