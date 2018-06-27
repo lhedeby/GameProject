@@ -11,7 +11,7 @@ public class Window {
     Terminal terminal;
 
     public Window() {
-        terminal = TerminalFacade.createTerminal(System.in, System.out, Charset.forName("UTF8"));
+        terminal = TerminalFacade.createTerminal(System.in, System.out, Charset.forName("UTF16"));
         screen = new Screen(terminal);
         screen.startScreen();
         graphics = new Graphics(this);

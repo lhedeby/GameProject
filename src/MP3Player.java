@@ -10,17 +10,17 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class MP3Player{
 
-    private final Map<String, MediaPlayer> audioMap;
-    private final JFXPanel fxPanel;
-    private boolean pauseMode;
+    private static final Map<String, MediaPlayer> audioMap;
+    private static final JFXPanel fxPanel;
+    private static boolean pauseMode;
 
-    public MP3Player(){
+    static{
         audioMap = new ConcurrentHashMap<>();
         fxPanel = new JFXPanel(); // need to create one instance
         pauseMode = false;
     }
 
-    private void setLoop(MediaPlayer mediaPlayer, boolean loop) {
+    private static void setLoop(MediaPlayer mediaPlayer, boolean loop) {
         if (mediaPlayer == null){
             return;
         }
@@ -32,21 +32,21 @@ public class MP3Player{
         }
     }
 
-    public void play(String filepath){
+    public static void play(String filepath){
         play(filepath, false);
     }
 
-    public void play(String filepath, boolean repeat){
+    public static void play(String filepath, boolean repeat){
         if (pauseMode) return;
         try {
             MediaPlayer mediaPlayer;
             if (audioMap.containsKey(filepath)) {
                 mediaPlayer = audioMap.get(filepath);
-                this.setLoop(mediaPlayer, repeat);
+                setLoop(mediaPlayer, repeat);
             }
             else{
                 mediaPlayer = new MediaPlayer( new Media(new File(filepath).toURI().toString()) );
-                this.setLoop(mediaPlayer, repeat);
+                setLoop(mediaPlayer, repeat);
                 audioMap.put(filepath, mediaPlayer);
             }
             mediaPlayer.seek(Duration.ZERO);
@@ -57,7 +57,7 @@ public class MP3Player{
         }
     }
 
-    public void stop(String filepath){
+    public static void stop(String filepath){
         try {
             if (audioMap.containsKey(filepath)) {
                 MediaPlayer mediaPlayer = audioMap.get(filepath);
@@ -71,7 +71,7 @@ public class MP3Player{
         }
     }
 
-    public void stopAll(){
+    public static void stopAll(){
         Set<String> keys = audioMap.keySet();
         if (keys.size() == 0) return;
         for (String s : keys){
@@ -80,7 +80,7 @@ public class MP3Player{
         pauseMode = false;
     }
 
-    public void pauseAll(){
+    public static void pauseAll(){
         Set<String> keys = audioMap.keySet();
         if (keys.size() == 0) return;
         for (String s : keys){
@@ -92,7 +92,7 @@ public class MP3Player{
         pauseMode = !pauseMode;
     }
 
-    private void pause(String filepath){
+    private static void pause(String filepath){
         try {
             if (audioMap.containsKey(filepath)) {
                 MediaPlayer mediaPlayer = audioMap.get(filepath);
@@ -104,7 +104,7 @@ public class MP3Player{
         }
     }
 
-    private void resume(String filepath){
+    private static void resume(String filepath){
         try {
             if (audioMap.containsKey(filepath)) {
                 MediaPlayer mediaPlayer = audioMap.get(filepath);
@@ -116,7 +116,7 @@ public class MP3Player{
         }
     }
 
-    public void playFX(String filepath){
+    public static void playFX(String filepath){
         try {
             MediaPlayer mediaPlayer = new MediaPlayer( new Media(new File(filepath).toURI().toString()) );
             mediaPlayer.play();

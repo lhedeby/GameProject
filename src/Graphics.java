@@ -40,5 +40,22 @@ public class Graphics {
         draw(x,y,color,symbol);
     }
 
+    public void gameOver() {
+        screenWriter.drawString(20, 10, "------------------------------");
+        screenWriter.drawString(20, 11, "|         Game over!         |");
+        screenWriter.drawString(20, 12, "|    Press key to restart    |");
+        screenWriter.drawString(20, 13, "------------------------------");
+        MP3Player.play(".\\src\\button-3.mp3");
+
+    }
+
+    public void win() {
+        screenWriter.drawString(20, 10, "------------------------------");
+        screenWriter.drawString(20, 11, "|           You win!         |");
+        screenWriter.drawString(20, 12, "|  Press key for next level  |");
+        screenWriter.drawString(20, 13, "------------------------------");
+        MP3Player.play(".\\src\\victory.mp3");
+
+    }
 
 }
