@@ -50,6 +50,7 @@ public class Graphics {
         screenWriter.drawString(20, 11, "|         Game over!         |");
         screenWriter.drawString(20, 12, "|    Press key to restart    |");
         screenWriter.drawString(20, 13, "------------------------------");
+        MP3Player.stop(".\\src\\supergame.mp3");
         MP3Player.play(".\\src\\button-3.mp3");
 
     }
@@ -59,7 +60,9 @@ public class Graphics {
         screenWriter.drawString(20, 11, "|           You win!         |");
         screenWriter.drawString(20, 12, "|  Press key for next level  |");
         screenWriter.drawString(20, 13, "------------------------------");
+        MP3Player.stop(".\\src\\supergame.mp3");
         MP3Player.play(".\\src\\victory.mp3");
+        MP3Player.play(".\\src\\supergame.mp3");
 
     }
 

@@ -27,6 +27,7 @@ public class Game {
             window.getScreen().refresh();
             keyManager.keyDetector();
             logic.movePlayer();
+            logic.moveMonsters();
             if (!logic.isAlive()){
                 window.graphics.gameOver();
                 window.getScreen().refresh();

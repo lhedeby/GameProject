@@ -7,6 +7,7 @@ import java.util.List;
 public class Monster extends GameObject {
     public Monster(int x, int y, String symbol, Terminal.Color color) {
         super(x, y, symbol, color);
+        this.xVelocity = 1;
     }
 
     public static Monster[] createMonsters(Level level) {
