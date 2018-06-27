@@ -2,15 +2,17 @@ public class Logic {
     Player player;
     Monster[] monsters;
     Level level;
+    Goal goal;
     int jumpCounter;
     int yNextStep;
     int xNextStep;
     boolean canJump = true;
 
-    public Logic(Player player, Level level, Monster[] monsters) {
+    public Logic(Player player, Level level, Monster[] monsters, Goal goal) {
         this.level = level;
         this.player = player;
         this.monsters = monsters;
+        this.goal = goal;
     }
 
     public void movePlayer() {
@@ -98,11 +100,25 @@ public class Logic {
 
     public boolean isAlive() {
         for (int i = 0; i < monsters.length; i++) {
-            if (monsters[i].getX() == player.getX() && monsters[i].getY() == player.getY()) {
+            if (collition(monsters[i],player)) {
                 return false;
             }
 
         }
         return true;
+    }
+
+    public boolean isWin(){
+        if(collition(goal,player)){
+            return true;
+        }
+        return false;
+    }
+
+    private boolean collition(GameObject obj1, GameObject obj2){
+        if (obj1.getX() == obj2.getX() && obj1.getY() == obj2.getY()) {
+            return true;
+        }
+        return false;
     }
 }

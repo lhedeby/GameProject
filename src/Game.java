@@ -11,11 +11,11 @@ public class Game {
     public void init() {
         window = new Window();
         level = new Level(window);
-        player = new Player(10,19);
+        player = new Player(2,19);
         monstersArray = Monster.createMonsters(level);
         goal = Goal.createGoal(level);
         keyManager = new KeyManager((Player)player, window.getScreen());
-        logic = new Logic((Player)player, level, monstersArray);
+        logic = new Logic((Player)player, level, monstersArray, goal);
         MP3Player.play(".\\src\\supergame.mp3", true);
 
 
@@ -33,6 +33,11 @@ public class Game {
             logic.moveMonsters();
             if (!logic.isAlive()){
                 window.graphics.gameOver();
+                window.getScreen().refresh();
+                break;
+            }
+            if(logic.isWin()){
+                window.graphics.win();
                 window.getScreen().refresh();
                 break;
             }
