@@ -25,6 +25,8 @@ public class Graphics {
             for(int y = 0; y < array[x].length; y++) {
                 if(array[x][y] == 1)
                     draw(x, y, Color.BLUE, " ");
+                if(array[x][y] == 0)
+                    draw(x, y, Color.BLACK, " ");
             }
         }
     }

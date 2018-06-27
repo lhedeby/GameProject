@@ -1,5 +1,6 @@
 import com.googlecode.lanterna.input.Key;
 
+import javax.swing.*;
 import java.io.*;
 
 import static com.googlecode.lanterna.input.Key.Kind.*;
@@ -18,13 +19,17 @@ public class Levelmaker {
 
         Key key;
         while (true) {
-
+            window.graphics.drawLevel(level);
+            window.getScreen().refresh();
             do {
                 key = window.getScreen().readInput();
             } while (key == null);
             switch (key.getKind()) {
                 case F1:
                     level.levelArray[x][y] = 1;
+                    break;
+                case F2:
+                    level.levelArray[x][y] = 0;
                     break;
                 case ArrowDown:
                     window.getScreen().setCursorPosition(x, ++y);
@@ -42,8 +47,7 @@ public class Levelmaker {
                     writeToFile(level);
                     System.exit(0);
             }
-            window.graphics.drawLevel(level);
-            window.getScreen().refresh();
+
         }
 
 
@@ -52,7 +56,8 @@ public class Levelmaker {
     public static void writeToFile(Level level) {
 
         try {
-            PrintWriter writer = new PrintWriter("level.txt", "UTF-8");
+            String path = JOptionPane.showInputDialog("Please write filename: ");
+            PrintWriter writer = new PrintWriter(".\\Levels\\" + path , "UTF-8");
             for(int i = 0; i < level.levelArray.length; i++) {
                 writer.println(intArrayToString(level.levelArray[i]));
             }
