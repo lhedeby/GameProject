@@ -6,6 +6,8 @@ public class Game {
     GameObject player;
     KeyManager keyManager;
     Logic logic;
+    MP3Player m;
+
 
     public void init() {
         window = new Window();
@@ -13,6 +15,9 @@ public class Game {
         player = new Player(10,19);
         keyManager = new KeyManager((Player)player, window.getScreen());
         logic = new Logic((Player)player, level);
+        m = new MP3Player();
+        m.play(".\\src\\Blues-Loop.mp3", true);
+
 
     }
 
