@@ -1,6 +1,7 @@
 import com.googlecode.lanterna.terminal.Terminal;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class Monster extends GameObject {
@@ -20,6 +21,8 @@ public class Monster extends GameObject {
             }
 
         }
-        return (Monster[]) monsters.toArray();
+        Monster[] result = new Monster[monsters.size()];
+
+        return monsters.toArray(result);
     }
 }

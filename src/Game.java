@@ -23,6 +23,7 @@ public class Game {
         while (true) {
             window.graphics.drawLevel(level);
             window.graphics.drawPlayer(player);
+            window.graphics.drawMonsters(monstersArray);
             window.getScreen().refresh();
             keyManager.keyDetector();
             logic.movePlayer();

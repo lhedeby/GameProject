@@ -4,8 +4,9 @@ import com.googlecode.lanterna.terminal.Terminal.Color;
 
 public class Graphics {
     ScreenWriter screenWriter;
+
     public Graphics(Window window) {
-          screenWriter = new ScreenWriter(window.getScreen());
+        screenWriter = new ScreenWriter(window.getScreen());
 
 
     }
@@ -17,25 +18,31 @@ public class Graphics {
 
     public void drawLevel(Level level) {
         int[][] array = level.getLevelArray();
-        for(int x = 0; x < array.length; x++) {
-            for(int y = 0; y < array[x].length; y++) {
-                if(array[x][y] == 1)
+        for (int x = 0; x < array.length; x++) {
+            for (int y = 0; y < array[x].length; y++) {
+                if (array[x][y] == 1)
                     draw(x, y, Color.GREEN, " ");
-                if(array[x][y] == 0)
+                if (array[x][y] == 0)
                     draw(x, y, Color.BLUE, " ");
-                if(array[x][y] == 2)
+                if (array[x][y] == 2)
                     draw(x, y, Color.RED, " ");
             }
         }
     }
 
-    public void drawPlayer(GameObject gameObject){
+    public void drawPlayer(GameObject gameObject) {
         int x = gameObject.getX();
         int y = gameObject.getY();
         Terminal.Color color = gameObject.getColor();
         String symbol = gameObject.getSymbol();
 
-        draw(x,y,color,symbol);
+        draw(x, y, color, symbol);
+    }
+
+    public void drawMonsters(Monster[] monsters) {
+        for (int i = 0; i < monsters.length; i++) {
+            drawPlayer(monsters[i]);
+        }
     }
 
     public void gameOver() {
