@@ -6,17 +6,21 @@ public class Game {
     Logic logic;
     Monster[] monstersArray;
     Goal goal;
+    int counter = 1;
+    boolean pause;
 
 
     public void init() {
         window = new Window();
         level = new Level(window);
-        player = new Player(2,19);
+        level.loadLevel(counter);
+        player = new Player(2, 19);
         monstersArray = Monster.createMonsters(level);
         goal = Goal.createGoal(level);
-        keyManager = new KeyManager((Player)player, window.getScreen());
-        logic = new Logic((Player)player, level, monstersArray, goal);
+        keyManager = new KeyManager((Player) player, window.getScreen());
+        logic = new Logic((Player) player, level, monstersArray, goal);
         MP3Player.play(".\\src\\supergame.mp3", true);
+        pause = false;
 
 
     }
@@ -31,21 +35,27 @@ public class Game {
             keyManager.keyDetector();
             logic.movePlayer();
             logic.moveMonsters();
-            if (!logic.isAlive()){
+            if (!logic.isAlive()) {
+                pause = true;
                 window.graphics.gameOver();
                 window.getScreen().refresh();
                 break;
             }
-            if(logic.isWin()){
+            if (logic.isWin()) {
+                pause = true;
                 window.graphics.win();
                 window.getScreen().refresh();
-                break;
+                level.loadLevel(++counter);
+            }
+            while (pause) {
+                if (!keyManager.keyDetectorPause())
+                pause = false;
             }
             window.getScreen().clear();
 
-            try{
+            try {
                 Thread.sleep(100);
-            } catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 continue;
             }
         }

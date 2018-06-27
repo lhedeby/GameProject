@@ -51,21 +51,31 @@ public class Graphics {
         drawPlayer(goal);
     }
 
+    public void start() {
+        screenWriter.drawString(30, 10, "                              ");
+        screenWriter.drawString(30, 11, "           Welcome!           ");
+        screenWriter.drawString(30, 12, "       Press key to start     ");
+        screenWriter.drawString(30, 13, "                              ");
+        MP3Player.stop(".\\src\\supergame.mp3");
+        MP3Player.play(".\\src\\button-3.mp3");
+
+    }
+
     public void gameOver() {
-        screenWriter.drawString(20, 10, "                              ");
-        screenWriter.drawString(20, 11, "          Game over!          ");
-        screenWriter.drawString(20, 12, "     Press key to restart     ");
-        screenWriter.drawString(20, 13, "                              ");
+        screenWriter.drawString(30, 10, "                              ");
+        screenWriter.drawString(30, 11, "          Game over!          ");
+        screenWriter.drawString(30, 12, "     Press key to restart     ");
+        screenWriter.drawString(30, 13, "                              ");
         MP3Player.stop(".\\src\\supergame.mp3");
         MP3Player.play(".\\src\\button-3.mp3");
 
     }
 
     public void win() {
-        screenWriter.drawString(20, 10, "                              ");
-        screenWriter.drawString(20, 11, "            You win!          ");
-        screenWriter.drawString(20, 12, "   Press key for next level   ");
-        screenWriter.drawString(20, 13, "                              ");
+        screenWriter.drawString(30, 10, "                              ");
+        screenWriter.drawString(30, 11, "            You win!          ");
+        screenWriter.drawString(30, 12, "   Press key for next level   ");
+        screenWriter.drawString(30, 13, "                              ");
         MP3Player.stop(".\\src\\supergame.mp3");
         MP3Player.play(".\\src\\victory.mp3");
         MP3Player.play(".\\src\\supergame.mp3");

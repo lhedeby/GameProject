@@ -30,4 +30,13 @@ public class KeyManager  {
             }
         }
     }
+
+    public boolean keyDetectorPause(){
+        key = screen.readInput();
+        if (key!=null){
+            if (key.getKind() == Key.Kind.Escape)
+                return false;
+        }
+        return true;
+    }
 }

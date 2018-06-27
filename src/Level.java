@@ -4,6 +4,7 @@ import java.io.FileReader;
 
 public class Level {
     int[][] levelArray;
+
     public Level(Window window) {
         levelArray = new int[window.getWidth()][window.getHeight()];
         for(int i = 0; i < levelArray.length; i++) {
@@ -11,13 +12,14 @@ public class Level {
                 levelArray[i][j] = 0;
             }
         }
-        loadLevel(levelArray);
-
     }
 
-    public void loadLevel(int[][] array) {
+
+
+    public void loadLevel(int counter) {
+        StringBuilder sb = new StringBuilder(".\\Levels\\level" + counter);
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(".\\Levels\\level1"));
+            BufferedReader reader = new BufferedReader(new FileReader(sb.toString()));
             int line = 0;
             while(true) {
                 String s = reader.readLine();
@@ -25,7 +27,7 @@ public class Level {
                     break;
 
                 for(int i = 0; i < s.length(); i++) {
-                    array[line][i] = Integer.parseInt(s.charAt(i) + "");
+                    levelArray[line][i] = Integer.parseInt(s.charAt(i) + "");
                 }
                 line++;
             }
