@@ -8,8 +8,8 @@ public class Logic {
     }
 
     public void movePlayer() {
-        if (level.getLevelArray()[player.x + player.xVelocity][player.y] != 1) {
-            this.player.x = player.x + player.xVelocity;
+        if (level.getLevelArray()[player.getX() + player.xVelocity][player.getY()] != 1) {
+            this.player.setX(player.getX() + player.xVelocity);
 
         }
     }
