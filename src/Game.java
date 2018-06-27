@@ -4,12 +4,14 @@ public class Game {
     GameObject player;
     KeyManager keyManager;
     Logic logic;
+    Monster [] monstersArray;
 
 
     public void init() {
         window = new Window();
         level = new Level(window);
         player = new Player(10,19);
+        monstersArray = Monster.createMonsters(level);
         keyManager = new KeyManager((Player)player, window.getScreen());
         logic = new Logic((Player)player, level);
         MP3Player.play(".\\src\\supergame.mp3", true);

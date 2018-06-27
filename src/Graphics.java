@@ -10,10 +10,6 @@ public class Graphics {
 
     }
 
-    public void drawString() {
-
-    }
-
     public void draw(int x, int y, Color color, String symbol) {
         screenWriter.setBackgroundColor(color);
         screenWriter.drawString(x, y, symbol);
