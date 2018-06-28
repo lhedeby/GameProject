@@ -10,6 +10,7 @@ public class Graphics {
     Level level;
     Goal goal;
     List<Monster> monstersList;
+    Window window;
 
     public Graphics(Window window, Player player, Level level, Goal goal, List<Monster> monstersList) {
         this.screenWriter = new ScreenWriter(window.getScreen());
@@ -17,10 +18,12 @@ public class Graphics {
         this.level = level;
         this.goal = goal;
         this.monstersList = monstersList;
+        this.window = window;
     }
     public Graphics(Level level, Window window) {
         this.level = level;
         this.screenWriter = new ScreenWriter(window.getScreen());
+        this.window = window;
 
     }
 
@@ -62,6 +65,7 @@ public class Graphics {
         drawPlayer();
         drawMonsters();
         drawGoal();
+        window.getScreen().refresh();
     }
 
     public void drawGameObject(GameObject gameObject) {
@@ -90,6 +94,7 @@ public class Graphics {
         screenWriter.drawString(30, 13, "                              ");
         MP3Player.stop(".\\src\\supergame.mp3");
         MP3Player.play(".\\src\\button-3.mp3");
+        window.getScreen().refresh();
 
     }
 
@@ -100,6 +105,7 @@ public class Graphics {
         screenWriter.drawString(30, 13, "                              ");
         MP3Player.stop(".\\src\\supergame.mp3");
         MP3Player.play(".\\src\\button-3.mp3");
+        window.getScreen().refresh();
 
     }
 
@@ -111,6 +117,19 @@ public class Graphics {
         MP3Player.stop(".\\src\\supergame.mp3");
         MP3Player.play(".\\src\\victory.mp3");
         MP3Player.play(".\\src\\supergame.mp3");
+        window.getScreen().refresh();
+
+    }
+
+    public void winGame() {
+        screenWriter.drawString(30, 10, "                              ");
+        screenWriter.drawString(30, 11, "            You win the game! ");
+        screenWriter.drawString(30, 12, "   Press key to restart       ");
+        screenWriter.drawString(30, 13, "                              ");
+        MP3Player.stop(".\\src\\supergame.mp3");
+        MP3Player.play(".\\src\\victory.mp3");
+        MP3Player.play(".\\src\\supergame.mp3");
+        window.getScreen().refresh();
 
     }
 

@@ -35,6 +35,8 @@ public class KeyManager  {
         key = screen.readInput();
         if (key!=null){
             if (key.getKind() == Key.Kind.Escape)
+                System.exit(0);
+            else
                 return false;
         }
         return true;
