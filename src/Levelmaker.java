@@ -20,6 +20,7 @@ public class Levelmaker {
 
 
 
+
         Key key;
         while (true) {
             window.graphics.drawLevelEditor();

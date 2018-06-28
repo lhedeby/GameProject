@@ -56,6 +56,8 @@ public class Game {
                 counter++;
             }
             while (pause) {
+                player.setX(1);
+                player.setY(19);
                 if (!keyManager.keyDetectorPause())
                     pause = false;
                 newLevel();
