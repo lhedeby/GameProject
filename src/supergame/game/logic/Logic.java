@@ -1,15 +1,20 @@
+package supergame.game.logic;
+
+import supergame.game.gameobjects.*;
+import supergame.game.level.Level;
+
 import java.util.List;
 
 public class Logic {
-    public static final int JUMPHEIGHT = 5;
-    Player player;
-    List<Monster> monstersList;
-    Level level;
-    Goal goal;
-    int jumpCounter;
-    int yNextStep;
-    int xNextStep;
-    boolean canJump = true;
+    private static final int JUMPHEIGHT = 5;
+    private Player player;
+    private List<Monster> monstersList;
+    private Level level;
+    private Goal goal;
+    private int jumpCounter;
+    private int yNextStep;
+    private int xNextStep;
+    private boolean canJump = true;
 
     public Logic(Player player, Level level, List<Monster> monstersList, Goal goal) {
         this.level = level;
@@ -21,12 +26,12 @@ public class Logic {
         moveMonsters();
         movePlayer();
     }
-    public void movePlayer() {
+    private void movePlayer() {
         movePlayerX();
         movePlayerY();
     }
     private void movePlayerY() {
-        if (player.yVelocity < 0 && canJump) {
+        if (player.getyVelocity() < 0 && canJump) {
             playerJump();
         } else {
            playerFall();
@@ -40,7 +45,7 @@ public class Logic {
         if (level.getLevelArray()[xNextStep][player.getY()] != Blocks.GROUND) {
             this.player.setX(xNextStep);
         }
-        player.xVelocity = 0;
+        player.setxVelocity(0);
     }
     private void playerFall() {
         if (player.getY() + 1 >= level.getLevelArray()[0].length) {
@@ -75,43 +80,43 @@ public class Logic {
         }
     }
     private void checkBoundariesX() {
-        if (player.xVelocity < 0) {
-            if (player.getX() + player.xVelocity < 0) {
+        if (player.getxVelocity() < 0) {
+            if (player.getX() + player.getxVelocity() < 0) {
                 xNextStep = 0;
             } else {
-                xNextStep = player.getX() + player.xVelocity;
+                xNextStep = player.getX() + player.getxVelocity();
             }
         } else {
-            if (player.getX() + player.xVelocity >= level.getLevelArray().length) {
+            if (player.getX() + player.getxVelocity() >= level.getLevelArray().length) {
                 xNextStep = level.getLevelArray().length - 1;
             } else {
-                xNextStep = player.getX() + player.xVelocity;
+                xNextStep = player.getX() + player.getxVelocity();
             }
         }
     }
 
     private void moveMonster(Monster monster) {
-        if (monster.xVelocity < 0) {
-            if (monster.getX() + monster.xVelocity < 0) {
+        if (monster.getxVelocity() < 0) {
+            if (monster.getX() + monster.getxVelocity() < 0) {
                 xNextStep = 0;
             } else {
-                xNextStep = monster.getX() + monster.xVelocity;
+                xNextStep = monster.getX() + monster.getxVelocity();
             }
         } else {
-            if (monster.getX() + monster.xVelocity >= level.getLevelArray().length) {
+            if (monster.getX() + monster.getxVelocity() >= level.getLevelArray().length) {
                 xNextStep = level.getLevelArray().length - 1;
             } else {
-                xNextStep = monster.getX() + monster.xVelocity;
+                xNextStep = monster.getX() + monster.getxVelocity();
             }
         }
         if (level.getLevelArray()[xNextStep][monster.getY()] != Blocks.GROUND) {
             monster.setX(xNextStep);
         } else {
-            monster.xVelocity *= -1;
+            monster.setxVelocity(monster.getxVelocity() * (-1));
         }
     }
 
-    public void moveMonsters() {
+    private void moveMonsters() {
         for (Monster monster : monstersList) {
             moveMonster(monster);
 

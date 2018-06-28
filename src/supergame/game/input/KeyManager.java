@@ -1,10 +1,13 @@
+package supergame.game.input;
+
 import com.googlecode.lanterna.input.Key;
 import com.googlecode.lanterna.screen.Screen;
+import supergame.game.gameobjects.Player;
 
 public class KeyManager {
-    Key key;
-    Screen screen;
-    Player player;
+    private Key key;
+    private Screen screen;
+    private Player player;
 
     public KeyManager(Player player, Screen screen) {
         this.player = player;

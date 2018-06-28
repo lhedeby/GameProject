@@ -1,8 +1,13 @@
+package supergame.game.level;
+
+import supergame.game.gameobjects.Blocks;
+import supergame.game.graphics.Window;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 
 public class Level {
-    Blocks[][] levelArray;
+    private Blocks[][] levelArray;
 
     public Level(Window window) {
         levelArray = new Blocks[window.getWidth()][window.getHeight()];
@@ -16,7 +21,7 @@ public class Level {
 
 
     public void loadLevel(int counter) {
-        StringBuilder sb = new StringBuilder(".\\Levels\\level" + counter);
+        StringBuilder sb = new StringBuilder(".\\res\\Levels\\level" + counter);
         try {
             BufferedReader reader = new BufferedReader(new FileReader(sb.toString()));
             int line = 0;

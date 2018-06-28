@@ -1,4 +1,6 @@
+package supergame.game.gameobjects;
 
+import supergame.game.level.Level;
 
 import static com.googlecode.lanterna.terminal.Terminal.*;
 
