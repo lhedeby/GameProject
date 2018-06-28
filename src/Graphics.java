@@ -28,6 +28,8 @@ public class Graphics {
                     draw(x, y, Color.RED, " ");
                 if (array[x][y] == 3)
                     draw(x, y, Color.YELLOW, " ");
+                if(array[x][y] == 4)
+                    draw(x, y, Color.WHITE, " ");
             }
         }
     }
