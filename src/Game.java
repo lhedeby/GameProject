@@ -14,7 +14,7 @@ public class Game {
         window = new Window();
         level = new Level(window);
         level.loadLevel(counter);
-        player = new Player(2, 19);
+        player = new Player(1, 19);
         monstersArray = Monster.createMonsters(level);
         goal = Goal.createGoal(level);
         keyManager = new KeyManager((Player) player, window.getScreen());
@@ -45,9 +45,15 @@ public class Game {
                 pause = true;
                 window.graphics.win();
                 window.getScreen().refresh();
+
+
                 level.loadLevel(++counter);
+                monstersArray = Monster.createMonsters(level);
+                logic.monsters = monstersArray;
             }
             while (pause) {
+                player.setX(1);
+                player.setY(19);
                 if (!keyManager.keyDetectorPause())
                 pause = false;
             }

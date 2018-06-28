@@ -15,6 +15,7 @@ public class Levelmaker {
         window.getScreen().setCursorPosition(x, y);
         window.getScreen().refresh();
         Level level = new Level(window);
+        level.loadLevel(1);
 
 
         Key key;
