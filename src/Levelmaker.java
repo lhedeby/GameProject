@@ -3,7 +3,7 @@ import com.googlecode.lanterna.input.Key;
 import javax.swing.*;
 import java.io.*;
 
-import static com.googlecode.lanterna.input.Key.Kind.*;
+
 
 public class Levelmaker {
 
@@ -15,12 +15,15 @@ public class Levelmaker {
         window.getScreen().setCursorPosition(x, y);
         window.getScreen().refresh();
         Level level = new Level(window);
-        level.loadLevel(2);
+        level.loadLevel(1);
+        window.setGraphics(new Graphics(level, window));
+
+
 
 
         Key key;
         while (true) {
-            window.graphics.drawLevel(level);
+            window.graphics.drawLevelEditor();
             window.getScreen().refresh();
             do {
                 key = window.getScreen().readInput();
