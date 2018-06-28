@@ -19,7 +19,7 @@ public class Game {
         level = new Level(window);
         goal = new Goal();
         monstersList = new ArrayList<>();
-        window.setGraphics(new Graphics(window,player,level,goal,monstersList));
+        window.setGraphics(new Graphics(window, player, level, goal, monstersList));
         newLevel();
         keyManager = new KeyManager(player, window.getScreen());
         logic = new Logic(player, level, monstersList, goal);
@@ -29,7 +29,7 @@ public class Game {
 
     }
 
-    public void newLevel(){
+    public void newLevel() {
         level.loadLevel(counter);
         player.setPlayerPosition(level);
         Monster.updateMonstersList(level, monstersList);
@@ -38,10 +38,7 @@ public class Game {
 
     public void loop() {
         while (true) {
-            window.graphics.drawLevel(level);
-            window.graphics.drawPlayer(player);
-            window.graphics.drawMonsters(monstersList);
-            window.graphics.drawGoal(goal);
+            window.graphics.render();
             window.getScreen().refresh();
             keyManager.keyDetector();
             logic.movePlayer();
@@ -60,7 +57,7 @@ public class Game {
             }
             while (pause) {
                 if (!keyManager.keyDetectorPause())
-                pause = false;
+                    pause = false;
                 newLevel();
             }
             window.getScreen().clear();

@@ -18,13 +18,17 @@ public class Graphics {
         this.goal = goal;
         this.monstersList = monstersList;
     }
+    public Graphics(Level level, Window window) {
+        this.level = level;
+        this.screenWriter = new ScreenWriter(window.getScreen());
+
+    }
 
     public void draw(int x, int y, Color color, String symbol) {
         screenWriter.setBackgroundColor(color);
         screenWriter.drawString(x, y, symbol);
     }
-
-    public void drawLevel(Level level) {
+    public void drawLevelEditor() {
         int[][] array = level.getLevelArray();
         for (int x = 0; x < array.length; x++) {
             for (int y = 0; y < array[x].length; y++) {
@@ -42,7 +46,25 @@ public class Graphics {
         }
     }
 
-    public void drawPlayer(GameObject gameObject) {
+    public void drawLevel() {
+        int[][] array = level.getLevelArray();
+        for (int x = 0; x < array.length; x++) {
+            for (int y = 0; y < array[x].length; y++) {
+                if (array[x][y] == 1)
+                    draw(x, y, Color.GREEN, " ");
+                if (array[x][y] == 0)
+                    draw(x, y, Color.BLUE, " ");
+            }
+        }
+    }
+    public void render() {
+        drawLevel();
+        drawPlayer();
+        drawMonsters();
+        drawGoal();
+    }
+
+    public void drawGameObject(GameObject gameObject) {
         int x = gameObject.getX();
         int y = gameObject.getY();
         Terminal.Color color = gameObject.getColor();
@@ -51,14 +73,14 @@ public class Graphics {
         draw(x, y, color, symbol);
     }
 
-    public void drawMonsters(List<Monster> monstersList) {
+    public void drawMonsters() {
         for(Monster monster:monstersList){
-            drawPlayer(monster);
+            drawGameObject(monster);
         }
     }
-
-    public void drawGoal(Goal goal){
-        drawPlayer(goal);
+    public void drawPlayer() { drawGameObject(player);}
+    public void drawGoal(){
+        drawGameObject(goal);
     }
 
     public void start() {
