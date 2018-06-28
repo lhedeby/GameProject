@@ -126,7 +126,7 @@ public class Graphics {
         screenWriter.setForegroundColor(Color.WHITE);
         screenWriter.drawString(35, 10, "                              ");
         screenWriter.drawString(35, 11, "            You win!          ", ScreenCharacterStyle.Blinking);
-        screenWriter.drawString(35, 12, "  Press ENTER for next level  ");
+        screenWriter.drawString(35, 12, "   Press ENTER for next level  ");
         screenWriter.drawString(35, 13, "                              ");
         MP3Player.stop(".\\src\\supergame.mp3");
         MP3Player.play(".\\src\\victory.mp3");
