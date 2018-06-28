@@ -2,18 +2,18 @@ import com.googlecode.lanterna.terminal.Terminal;
 
 public class Goal extends GameObject {
 
-    public Goal(int x, int y, String symbol, Terminal.Color color) {
-        super(x, y, symbol, color);
+    public Goal() {
+        super(0, 0, " ", Terminal.Color.YELLOW);
     }
 
-     public static Goal createGoal(Level level){
+     public void setGoalPosition(Level level){
         for (int x = 0; x < level.getLevelArray().length; x++) {
             for (int y = 0; y < level.getLevelArray()[x].length; y++) {
                 if (level.getLevelArray()[x][y] == 3) {
-                    return new Goal(x,y," ", Terminal.Color.YELLOW);
+                    this.setX(x);
+                    this.setY(y);
                 }
             }
         }
-        return null;
     }
 }

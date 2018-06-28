@@ -1,10 +1,13 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Game {
     Window window;
     Level level;
-    GameObject player;
+    Player player;
     KeyManager keyManager;
     Logic logic;
-    Monster[] monstersArray;
+    List<Monster> monstersList;
     Goal goal;
     int counter = 1;
     boolean pause;
@@ -12,24 +15,32 @@ public class Game {
 
     public void init() {
         window = new Window();
+        player = new Player();
         level = new Level(window);
-        level.loadLevel(counter);
-        player = new Player(2, 19);
-        monstersArray = Monster.createMonsters(level);
-        goal = Goal.createGoal(level);
-        keyManager = new KeyManager((Player) player, window.getScreen());
-        logic = new Logic((Player) player, level, monstersArray, goal);
+        goal = new Goal();
+        monstersList = new ArrayList<>();
+        window.setGraphics(new Graphics(window,player,level,goal,monstersList));
+        newLevel();
+        keyManager = new KeyManager(player, window.getScreen());
+        logic = new Logic(player, level, monstersList, goal);
         MP3Player.play(".\\src\\supergame.mp3", true);
         pause = false;
 
 
     }
 
+    public void newLevel(){
+        level.loadLevel(counter);
+        player.setPlayerPosition(level);
+        Monster.updateMonstersList(level, monstersList);
+        goal.setGoalPosition(level);
+    }
+
     public void loop() {
         while (true) {
             window.graphics.drawLevel(level);
             window.graphics.drawPlayer(player);
-            window.graphics.drawMonsters(monstersArray);
+            window.graphics.drawMonsters(monstersList);
             window.graphics.drawGoal(goal);
             window.getScreen().refresh();
             keyManager.keyDetector();
@@ -45,11 +56,12 @@ public class Game {
                 pause = true;
                 window.graphics.win();
                 window.getScreen().refresh();
-                level.loadLevel(++counter);
+                counter++;
             }
             while (pause) {
                 if (!keyManager.keyDetectorPause())
                 pause = false;
+                newLevel();
             }
             window.getScreen().clear();
 

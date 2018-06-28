@@ -2,13 +2,21 @@ import com.googlecode.lanterna.screen.ScreenWriter;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.Terminal.Color;
 
+import java.util.List;
+
 public class Graphics {
     ScreenWriter screenWriter;
+    Player player;
+    Level level;
+    Goal goal;
+    List<Monster> monstersList;
 
-    public Graphics(Window window) {
-        screenWriter = new ScreenWriter(window.getScreen());
-
-
+    public Graphics(Window window, Player player, Level level, Goal goal, List<Monster> monstersList) {
+        this.screenWriter = new ScreenWriter(window.getScreen());
+        this.player = player;
+        this.level = level;
+        this.goal = goal;
+        this.monstersList = monstersList;
     }
 
     public void draw(int x, int y, Color color, String symbol) {
@@ -41,9 +49,9 @@ public class Graphics {
         draw(x, y, color, symbol);
     }
 
-    public void drawMonsters(Monster[] monsters) {
-        for (int i = 0; i < monsters.length; i++) {
-            drawPlayer(monsters[i]);
+    public void drawMonsters(List<Monster> monstersList) {
+        for(Monster monster:monstersList){
+            drawPlayer(monster);
         }
     }
 
