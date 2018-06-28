@@ -100,10 +100,10 @@ public class Graphics {
         screenWriter.setBackgroundColor(Color.YELLOW);
         screenWriter.setForegroundColor(Color.WHITE);
         screenWriter.drawString(35, 10, "                              ");
-        screenWriter.drawString(35, 11, "           Welcome!           ");
-        screenWriter.drawString(35, 12, "       Press key to start     ");
-        screenWriter.drawString(35, 13, "                              ");
-        MP3Player.play(".\\src\\supergame.mp3");
+        screenWriter.drawString(35, 11, "          Super Game          ");
+        screenWriter.drawString(35, 12, "                              ");
+        screenWriter.drawString(35, 13, "     Press ENTER to start     ");
+        screenWriter.drawString(35, 14, "                              ");
         window.getScreen().refresh();
 
     }
@@ -112,8 +112,8 @@ public class Graphics {
         screenWriter.setBackgroundColor(Color.YELLOW);
         screenWriter.setForegroundColor(Color.WHITE);
         screenWriter.drawString(35, 10, "                              ");
-        screenWriter.drawString(35, 11, "          Game over!          ", ScreenCharacterStyle.Bold);
-        screenWriter.drawString(35, 12, "     Press key to restart     ");
+        screenWriter.drawString(35, 11, "          Game over!          ", ScreenCharacterStyle.Blinking);
+        screenWriter.drawString(35, 12, "    Press ENTER to restart    ");
         screenWriter.drawString(35, 13, "                              ");
         MP3Player.stop(".\\src\\supergame.mp3");
         MP3Player.play(".\\src\\button-3.mp3");
@@ -126,7 +126,7 @@ public class Graphics {
         screenWriter.setForegroundColor(Color.WHITE);
         screenWriter.drawString(35, 10, "                              ");
         screenWriter.drawString(35, 11, "            You win!          ", ScreenCharacterStyle.Blinking);
-        screenWriter.drawString(35, 12, "   Press key for next level   ");
+        screenWriter.drawString(35, 12, "  Press ENTER for next level  ");
         screenWriter.drawString(35, 13, "                              ");
         MP3Player.stop(".\\src\\supergame.mp3");
         MP3Player.play(".\\src\\victory.mp3");
@@ -139,7 +139,7 @@ public class Graphics {
         screenWriter.setForegroundColor(Color.WHITE);
         screenWriter.drawString(35, 10, "                              ");
         screenWriter.drawString(35, 11, "       You win the game!      ", ScreenCharacterStyle.Blinking);
-        screenWriter.drawString(35, 12, "     Press key to restart     ");
+        screenWriter.drawString(35, 12, "    Press ENTER to restart    ");
         screenWriter.drawString(35, 13, "                              ");
         MP3Player.stop(".\\src\\supergame.mp3");
         MP3Player.play(".\\src\\victory.mp3");

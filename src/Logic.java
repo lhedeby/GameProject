@@ -120,11 +120,17 @@ public class Logic {
 
 
     public boolean isAlive() {
-
         for(Monster monster:monstersList){
             if (collision(monster,player)) {
                 return false;
             }
+        }
+        return true;
+    }
+
+    public boolean isNotFallen(){
+        if(yNextStep == level.getLevelArray()[0].length - 1){
+            return false;
         }
         return true;
     }

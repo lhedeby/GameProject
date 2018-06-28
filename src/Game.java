@@ -37,6 +37,7 @@ public class Game {
         player.setPlayerPosition(level);
         Monster.updateMonstersList(level, monstersList);
         goal.setGoalPosition(level);
+        MP3Player.play(".\\src\\supergame.mp3", true);
     }
 
     public void loop() {
@@ -50,7 +51,7 @@ public class Game {
             if (start)
                 displayStartScreen();
 
-            if (!logic.isAlive())
+            if (!logic.isAlive() || !logic.isNotFallen())
                 displayDeathScreen();
 
             if (logic.isWin())
