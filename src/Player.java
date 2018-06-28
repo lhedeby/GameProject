@@ -6,7 +6,7 @@ import static com.googlecode.lanterna.terminal.Terminal.*;
 public class Player extends GameObject {
 
     public Player() {
-        super(0, 0, "P", Color.WHITE);
+        super(0, 0, "\u265B", Color.WHITE);
     }
 
     public void setPlayerPosition(Level level){
