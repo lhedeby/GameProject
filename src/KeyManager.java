@@ -38,7 +38,7 @@ public class KeyManager {
         if (key != null) {
             if (key.getKind() == Key.Kind.Escape)
                 System.exit(0);
-            else
+            else if(key.getKind() == Key.Kind.Enter)
                 return false;
         }
         return true;
