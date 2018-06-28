@@ -70,7 +70,7 @@ public class Levelmaker {
 
         try {
             String path = JOptionPane.showInputDialog("Please write filename: ");
-            PrintWriter writer = new PrintWriter(".\\Levels\\" + path , "UTF-8");
+            PrintWriter writer = new PrintWriter(".\\res\\Levels\\" + path , "UTF-8");
             for(int i = 0; i < level.levelArray.length; i++) {
                 writer.println(intArrayToString(level.levelArray[i]));
             }

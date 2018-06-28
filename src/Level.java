@@ -16,7 +16,7 @@ public class Level {
 
 
     public void loadLevel(int counter) {
-        StringBuilder sb = new StringBuilder(".\\Levels\\level" + counter);
+        StringBuilder sb = new StringBuilder(".\\res\\Levels\\level" + counter);
         try {
             BufferedReader reader = new BufferedReader(new FileReader(sb.toString()));
             int line = 0;
