@@ -69,7 +69,8 @@ public class Game {
         window.graphics.gameOver();
         start = true;
         levelCounter = 1;
-
+        MP3Player.stop(".\\src\\supergame.mp3");
+        MP3Player.play(".\\src\\button-3.mp3");
     }
 
     private void displayStartScreen() {
@@ -88,6 +89,8 @@ public class Game {
         } else {
             window.graphics.win();
         }
+        MP3Player.stop(".\\src\\supergame.mp3");
+        MP3Player.play(".\\src\\victory.mp3");
     }
 
     private void pauseGame() {
