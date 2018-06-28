@@ -1,4 +1,9 @@
+package supergame.game.level;
+
 import com.googlecode.lanterna.input.Key;
+import supergame.game.gameobjects.Blocks;
+import supergame.game.graphics.Graphics;
+import supergame.game.graphics.Window;
 
 import javax.swing.*;
 import java.io.*;
@@ -23,26 +28,26 @@ public class Levelmaker {
 
         Key key;
         while (true) {
-            window.graphics.drawLevelEditor();
+            window.getGraphics().drawLevelEditor();
             window.getScreen().refresh();
             do {
                 key = window.getScreen().readInput();
             } while (key == null);
             switch (key.getKind()) {
                 case F1:
-                    level.levelArray[x][y] = Blocks.GROUND;
+                    level.getLevelArray()[x][y] = Blocks.GROUND;
                     break;
                 case F2:
-                    level.levelArray[x][y] = Blocks.SKY;
+                    level.getLevelArray()[x][y] = Blocks.SKY;
                     break;
                 case F3:
-                    level.levelArray[x][y] = Blocks.MONSTER;
+                    level.getLevelArray()[x][y] = Blocks.MONSTER;
                     break;
                 case F4:
-                    level.levelArray[x][y] = Blocks.GOAL;
+                    level.getLevelArray()[x][y] = Blocks.GOAL;
                     break;
                 case F5:
-                    level.levelArray[x][y] = Blocks.PLAYER;
+                    level.getLevelArray()[x][y] = Blocks.PLAYER;
                     break;
                 case ArrowDown:
                     window.getScreen().setCursorPosition(x, ++y);
@@ -66,13 +71,13 @@ public class Levelmaker {
 
     }
 
-    public static void writeToFile(Level level) {
+    private static void writeToFile(Level level) {
 
         try {
             String path = JOptionPane.showInputDialog("Please write filename: ");
             PrintWriter writer = new PrintWriter(".\\res\\Levels\\" + path , "UTF-8");
-            for(int i = 0; i < level.levelArray.length; i++) {
-                writer.println(intArrayToString(level.levelArray[i]));
+            for(int i = 0; i < level.getLevelArray().length; i++) {
+                writer.println(intArrayToString(level.getLevelArray()[i]));
             }
             writer.close();
 

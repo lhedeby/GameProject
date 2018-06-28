@@ -1,20 +1,15 @@
+package supergame.game.gameobjects;
+
 import com.googlecode.lanterna.terminal.Terminal;
 
 public abstract class GameObject {
 
     private int x, y;
-    protected String symbol;
-    protected Terminal.Color color;
-    protected int yVelocity;
-    protected int xVelocity;
+    private String symbol;
+    private Terminal.Color color;
+    private int yVelocity;
+    private int xVelocity;
 
-    public void setyVelocity(int yVelocity) {
-        this.yVelocity = yVelocity;
-    }
-
-    public void setxVelocity(int xVelocity) {
-        this.xVelocity = xVelocity;
-    }
 
     public GameObject(int x, int y, String symbol, Terminal.Color color) {
         this.x = x;
@@ -25,19 +20,19 @@ public abstract class GameObject {
         this.yVelocity = 1;
     }
 
-    protected int getX() {
+    public int getX() {
         return x;
     }
 
-    protected int getY() {
+    public int getY() {
         return y;
     }
 
-    protected void setX(int x) {
+    public void setX(int x) {
         this.x = x;
     }
 
-    protected void setY(int y) {
+    public void setY(int y) {
         this.y = y;
     }
 
@@ -49,4 +44,20 @@ public abstract class GameObject {
         return color;
     }
 
+    public void setyVelocity(int yVelocity) {
+        this.yVelocity = yVelocity;
+    }
+
+    public void setxVelocity(int xVelocity) {
+        this.xVelocity = xVelocity;
+    }
+
+
+    public int getyVelocity() {
+        return yVelocity;
+    }
+
+    public int getxVelocity() {
+        return xVelocity;
+    }
 }

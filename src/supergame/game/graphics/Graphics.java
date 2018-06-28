@@ -1,18 +1,21 @@
-import com.googlecode.lanterna.screen.Screen;
+package supergame.game.graphics;
+
 import com.googlecode.lanterna.screen.ScreenCharacterStyle;
 import com.googlecode.lanterna.screen.ScreenWriter;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.Terminal.Color;
+import supergame.game.gameobjects.*;
+import supergame.game.level.Level;
 
 import java.util.List;
 
 public class Graphics {
-    ScreenWriter screenWriter;
-    Player player;
-    Level level;
-    Goal goal;
-    List<Monster> monstersList;
-    Window window;
+    private ScreenWriter screenWriter;
+    private Player player;
+    private Level level;
+    private Goal goal;
+    private List<Monster> monstersList;
+    private Window window;
 
     public Graphics(Window window, Player player, Level level, Goal goal, List<Monster> monstersList) {
         this.screenWriter = new ScreenWriter(window.getScreen());
@@ -29,12 +32,12 @@ public class Graphics {
 
     }
 
-    public void draw(int x, int y, Color color, String symbol) {
+    private void draw(int x, int y, Color color, String symbol) {
         screenWriter.setBackgroundColor(color);
         screenWriter.drawString(x, y, symbol);
     }
 
-    public void drawObject(int x, int y, Color color, String symbol){
+    private void drawObject(int x, int y, Color color, String symbol){
         screenWriter.setForegroundColor(color);
         screenWriter.drawString(x, y, symbol, ScreenCharacterStyle.Bold);
     }
@@ -58,7 +61,7 @@ public class Graphics {
         }
     }
 
-    public void drawLevel() {
+    private void drawLevel() {
         Blocks[][] array = level.getLevelArray();
         for (int x = 0; x < array.length; x++) {
             for (int y = 0; y < array[x].length; y++) {
@@ -77,7 +80,7 @@ public class Graphics {
         window.getScreen().refresh();
     }
 
-    public void drawGameObject(GameObject gameObject) {
+    private void drawGameObject(GameObject gameObject) {
         int x = gameObject.getX();
         int y = gameObject.getY();
         Terminal.Color color = gameObject.getColor();
@@ -86,13 +89,13 @@ public class Graphics {
         drawObject(x, y, color, symbol);
     }
 
-    public void drawMonsters() {
+    private void drawMonsters() {
         for(Monster monster:monstersList){
             drawGameObject(monster);
         }
     }
-    public void drawPlayer() { drawGameObject(player);}
-    public void drawGoal(){
+    private void drawPlayer() { drawGameObject(player);}
+    private void drawGoal(){
         drawGameObject(goal);
     }
 
@@ -100,7 +103,7 @@ public class Graphics {
         screenWriter.setBackgroundColor(Color.YELLOW);
         screenWriter.setForegroundColor(Color.WHITE);
         screenWriter.drawString(35, 10, "                              ");
-        screenWriter.drawString(35, 11, "          Super Game          ");
+        screenWriter.drawString(35, 11, "          Super  Game         ");
         screenWriter.drawString(35, 12, "                              ");
         screenWriter.drawString(35, 13, "     Press ENTER to start     ");
         screenWriter.drawString(35, 14, "                              ");

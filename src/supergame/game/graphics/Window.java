@@ -1,3 +1,5 @@
+package supergame.game.graphics;
+
 import com.googlecode.lanterna.TerminalFacade;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.terminal.Terminal;
@@ -6,9 +8,9 @@ import java.nio.charset.Charset;
 
 public class Window {
 
-    Graphics graphics;
-    Screen screen;
-    Terminal terminal;
+    private Graphics graphics;
+    private Screen screen;
+    private Terminal terminal;
 
     public Window() {
         terminal = TerminalFacade.createTerminal(System.in, System.out, Charset.forName("UTF16"));
@@ -30,5 +32,9 @@ public class Window {
 
     public void setGraphics(Graphics graphics){
         this.graphics = graphics;
+    }
+
+    public Graphics getGraphics() {
+        return graphics;
     }
 }

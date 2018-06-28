@@ -1,11 +1,14 @@
+package supergame.game.gameobjects;
+
 import com.googlecode.lanterna.terminal.Terminal;
+import supergame.game.level.Level;
 
 import java.util.List;
 
 public class Monster extends GameObject {
     public Monster(int x, int y, String symbol, Terminal.Color color) {
         super(x, y, symbol, color);
-        this.xVelocity = 1;
+        this.setxVelocity(1);
     }
 
     public static void updateMonstersList(Level level, List<Monster> monstersList) {

@@ -1,4 +1,7 @@
+package supergame.game.gameobjects;
+
 import com.googlecode.lanterna.terminal.Terminal;
+import supergame.game.level.Level;
 
 public class Goal extends GameObject {
 

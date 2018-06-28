@@ -1,3 +1,5 @@
+package supergame.game.sound;
+
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;

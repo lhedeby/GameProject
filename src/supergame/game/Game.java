@@ -1,18 +1,30 @@
+package supergame.game;
+
+import supergame.game.gameobjects.Goal;
+import supergame.game.gameobjects.Monster;
+import supergame.game.gameobjects.Player;
+import supergame.game.graphics.Graphics;
+import supergame.game.graphics.Window;
+import supergame.game.input.KeyManager;
+import supergame.game.level.Level;
+import supergame.game.logic.Logic;
+import supergame.game.sound.MP3Player;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    public static final int MAXLEVELS = 6;
-    Window window;
-    Level level;
-    Player player;
-    KeyManager keyManager;
-    Logic logic;
-    List<Monster> monstersList;
-    Goal goal;
-    int levelCounter = 1;
-    boolean pause;
-    boolean start;
+    private static final int MAXLEVELS = 6;
+    private Window window;
+    private Level level;
+    private Player player;
+    private KeyManager keyManager;
+    private Logic logic;
+    private List<Monster> monstersList;
+    private Goal goal;
+    private int levelCounter = 1;
+    private boolean pause;
+    private boolean start;
 
 
     public void init() {
@@ -31,7 +43,7 @@ public class Game {
 
     }
 
-    public void newLevel() {
+    private void newLevel() {
         level.loadLevel(levelCounter);
         player.setPlayerPosition(level);
         Monster.updateMonstersList(level, monstersList);
@@ -44,7 +56,7 @@ public class Game {
 
             keyManager.keyDetector();
             logic.moveObjects();
-            window.graphics.render();
+            window.getGraphics().render();
 
 
             if (start)
@@ -65,7 +77,7 @@ public class Game {
 
     private void displayDeathScreen() {
         pause = true;
-        window.graphics.gameOver();
+        window.getGraphics().gameOver();
         start = true;
         levelCounter = 1;
         MP3Player.stop(".\\res\\sound\\supergame.mp3");
@@ -73,7 +85,7 @@ public class Game {
     }
 
     private void displayStartScreen() {
-        window.graphics.start();
+        window.getGraphics().start();
         start = false;
         pause = true;
     }
@@ -82,11 +94,11 @@ public class Game {
         pause = true;
         levelCounter++;
         if (levelCounter == MAXLEVELS) {
-            window.graphics.winGame();
+            window.getGraphics().winGame();
             levelCounter = 1;
             start = true;
         } else {
-            window.graphics.win();
+            window.getGraphics().win();
         }
         MP3Player.stop(".\\res\\sound\\supergame.mp3");
         MP3Player.play(".\\res\\sound\\victory.mp3");
