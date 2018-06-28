@@ -25,7 +25,6 @@ public class Game {
         newLevel();
         keyManager = new KeyManager(player, window.getScreen());
         logic = new Logic(player, level, monstersList, goal);
-        MP3Player.play(".\\src\\supergame.mp3", true);
         pause = true;
         start = true;
 
@@ -37,7 +36,7 @@ public class Game {
         player.setPlayerPosition(level);
         Monster.updateMonstersList(level, monstersList);
         goal.setGoalPosition(level);
-        MP3Player.play(".\\src\\supergame.mp3", true);
+        MP3Player.play(".\\res\\sound\\supergame.mp3", true);
     }
 
     public void loop() {
@@ -69,8 +68,8 @@ public class Game {
         window.graphics.gameOver();
         start = true;
         levelCounter = 1;
-        MP3Player.stop(".\\src\\supergame.mp3");
-        MP3Player.play(".\\src\\button-3.mp3");
+        MP3Player.stop(".\\res\\sound\\supergame.mp3");
+        MP3Player.play(".\\res\\sound\\button-3.mp3");
     }
 
     private void displayStartScreen() {
@@ -89,8 +88,8 @@ public class Game {
         } else {
             window.graphics.win();
         }
-        MP3Player.stop(".\\src\\supergame.mp3");
-        MP3Player.play(".\\src\\victory.mp3");
+        MP3Player.stop(".\\res\\sound\\supergame.mp3");
+        MP3Player.play(".\\res\\sound\\victory.mp3");
     }
 
     private void pauseGame() {
