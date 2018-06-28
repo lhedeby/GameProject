@@ -3,7 +3,7 @@ import com.googlecode.lanterna.terminal.Terminal;
 public class Goal extends GameObject {
 
     public Goal() {
-        super(0, 0, "\u2348", Terminal.Color.YELLOW);
+        super(0, 0, " ", Terminal.Color.YELLOW);
     }
 
      public void setGoalPosition(Level level){
