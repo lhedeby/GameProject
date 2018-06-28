@@ -1,6 +1,7 @@
 import java.util.List;
 
 public class Logic {
+    public static final int JUMPHEIGHT = 5;
     Player player;
     List<Monster> monstersList;
     Level level;
@@ -16,8 +17,64 @@ public class Logic {
         this.monstersList = monstersList;
         this.goal = goal;
     }
-
+    public void moveObjects() {
+        moveMonsters();
+        movePlayer();
+    }
     public void movePlayer() {
+        movePlayerX();
+        movePlayerY();
+    }
+    private void movePlayerY() {
+        if (player.yVelocity < 0 && canJump) {
+            playerJump();
+        } else {
+           playerFall();
+        }
+    }
+
+    private void movePlayerX() {
+        checkBoundariesX();
+
+        //check if square is solid
+        if (level.getLevelArray()[xNextStep][player.getY()] != 1) {
+            this.player.setX(xNextStep);
+        }
+        player.xVelocity = 0;
+    }
+    private void playerFall() {
+        if (player.getY() + 1 >= level.getLevelArray()[0].length) {
+            yNextStep = level.getLevelArray()[0].length - 1;
+        } else {
+            yNextStep = player.getY() + 1;
+        }
+
+        if (level.getLevelArray()[player.getX()][yNextStep] != 1) {
+            this.player.setY(yNextStep);
+            canJump = false;
+        } else {
+            canJump = true;
+        }
+    }
+    private void playerJump() {
+        if (player.getY() - 1 > 0) {
+            yNextStep = player.getY() - 1;
+        } else {
+            yNextStep = 0;
+        }
+        if (jumpCounter < JUMPHEIGHT) {
+
+            if (level.getLevelArray()[player.getX()][yNextStep] != 1) {
+                this.player.setY(yNextStep);
+            }
+            jumpCounter++;
+        } else {
+            jumpCounter = 0;
+            player.setyVelocity(1);
+            canJump = false;
+        }
+    }
+    private void checkBoundariesX() {
         if (player.xVelocity < 0) {
             if (player.getX() + player.xVelocity < 0) {
                 xNextStep = 0;
@@ -31,45 +88,7 @@ public class Logic {
                 xNextStep = player.getX() + player.xVelocity;
             }
         }
-        if (level.getLevelArray()[xNextStep][player.getY()] != 1) {
-            this.player.setX(xNextStep);
-        }
-
-        if (player.yVelocity < 0 && canJump) {
-            if (player.getY() - 1 > 0) {
-                yNextStep = player.getY() - 1;
-            } else {
-                yNextStep = 0;
-            }
-            if (jumpCounter < 5) {
-
-                if (level.getLevelArray()[player.getX()][yNextStep] != 1) {
-                    this.player.setY(yNextStep);
-                }
-                jumpCounter++;
-            } else {
-                jumpCounter = 0;
-                player.setyVelocity(1);
-                canJump = false;
-            }
-        } else {
-
-            if (player.getY() + 1 >= level.getLevelArray()[0].length) {
-                yNextStep = level.getLevelArray()[0].length - 1;
-            } else {
-                yNextStep = player.getY() + 1;
-            }
-            if (level.getLevelArray()[player.getX()][yNextStep] != 1) {
-                this.player.setY(yNextStep);
-                canJump = false;
-            } else {
-                canJump = true;
-            }
-        }
-
-
     }
-
 
     private void moveMonster(Monster monster) {
         if (monster.xVelocity < 0) {
