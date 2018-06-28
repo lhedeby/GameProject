@@ -1,7 +1,5 @@
 import com.googlecode.lanterna.terminal.Terminal;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class Monster extends GameObject {
@@ -11,7 +9,7 @@ public class Monster extends GameObject {
     }
 
     public static void updateMonstersList(Level level, List<Monster> monstersList) {
-        monstersList.clear();;
+        monstersList.clear();
         for (int x = 0; x < level.getLevelArray().length; x++) {
             for (int y = 0; y < level.getLevelArray()[x].length; y++) {
                 if (level.getLevelArray()[x][y] == 2) {

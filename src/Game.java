@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
+    public static final int MAXLEVELS = 6;
     Window window;
     Level level;
     Player player;
@@ -41,43 +42,62 @@ public class Game {
     public void loop() {
         while (true) {
 
-            window.graphics.render();
             keyManager.keyDetector();
-            logic.movePlayer();
-            logic.moveMonsters();
-            if (!logic.isAlive()) {
-                pause = true;
-                window.graphics.gameOver();
-                break;
-            }
-            if (start == true) {
-                window.graphics.start();
-                start = false;
-            }
-            if (logic.isWin()) {
-                pause = true;
-                levelCounter++;
-                if (levelCounter == 4) {
-                    window.graphics.winGame();
-                    levelCounter = 1;
-                    start = true;
-                } else {
-                    window.graphics.win();
-                }
-            }
-            while (pause) {
+            logic.moveObjects();
+            window.graphics.render();
+
+
+            if (start)
+                displayStartScreen();
+
+            if (!logic.isAlive())
+                displayDeathScreen();
+
+            if (logic.isWin())
+                displayWinScreen();
+
+            while (pause)
                 pauseGame();
-            }
+
             sleep();
         }
     }
-    public void pauseGame() {
+
+    private void displayDeathScreen() {
+        pause = true;
+        window.graphics.gameOver();
+        start = true;
+        levelCounter = 1;
+
+    }
+
+    private void displayStartScreen() {
+        window.graphics.start();
+        start = false;
+        pause = true;
+    }
+
+    private void displayWinScreen() {
+        pause = true;
+        levelCounter++;
+        if (levelCounter == MAXLEVELS) {
+            window.graphics.winGame();
+            levelCounter = 1;
+            start = true;
+        } else {
+            window.graphics.win();
+        }
+    }
+
+    private void pauseGame() {
         if (!keyManager.keyDetectorPause()) {
             pause = false;
+
         }
         newLevel();
     }
-    public void sleep() {
+
+    private void sleep() {
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
