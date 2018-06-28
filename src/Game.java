@@ -9,8 +9,9 @@ public class Game {
     Logic logic;
     List<Monster> monstersList;
     Goal goal;
-    int counter = 1;
+    int levelCounter = 1;
     boolean pause;
+    boolean start;
 
 
     public void init() {
@@ -24,13 +25,14 @@ public class Game {
         keyManager = new KeyManager(player, window.getScreen());
         logic = new Logic(player, level, monstersList, goal);
         MP3Player.play(".\\src\\supergame.mp3", true);
-        pause = false;
+        pause = true;
+        start = true;
 
 
     }
 
     public void newLevel() {
-        level.loadLevel(counter);
+        level.loadLevel(levelCounter);
         player.setPlayerPosition(level);
         Monster.updateMonstersList(level, monstersList);
         goal.setGoalPosition(level);
@@ -38,37 +40,48 @@ public class Game {
 
     public void loop() {
         while (true) {
+
             window.graphics.render();
-            window.getScreen().refresh();
             keyManager.keyDetector();
             logic.movePlayer();
             logic.moveMonsters();
             if (!logic.isAlive()) {
                 pause = true;
                 window.graphics.gameOver();
-                window.getScreen().refresh();
                 break;
+            }
+            if (start == true) {
+                window.graphics.start();
+                start = false;
             }
             if (logic.isWin()) {
                 pause = true;
-                window.graphics.win();
-                window.getScreen().refresh();
-                counter++;
+                levelCounter++;
+                if (levelCounter == 4) {
+                    window.graphics.winGame();
+                    levelCounter = 1;
+                    start = true;
+                } else {
+                    window.graphics.win();
+                }
             }
             while (pause) {
-                player.setX(1);
-                player.setY(19);
-                if (!keyManager.keyDetectorPause())
-                    pause = false;
-                newLevel();
+                pauseGame();
             }
-            window.getScreen().clear();
-
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                continue;
-            }
+            sleep();
+        }
+    }
+    public void pauseGame() {
+        if (!keyManager.keyDetectorPause()) {
+            pause = false;
+        }
+        newLevel();
+    }
+    public void sleep() {
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }
