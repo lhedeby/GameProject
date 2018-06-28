@@ -14,7 +14,6 @@ public class Window {
         terminal = TerminalFacade.createTerminal(System.in, System.out, Charset.forName("UTF16"));
         screen = new Screen(terminal);
         screen.startScreen();
-        graphics = new Graphics(this);
         screen.setCursorPosition(null);
     }
 
@@ -27,5 +26,9 @@ public class Window {
     }
     public int getHeight() {
         return terminal.getTerminalSize().getRows();
+    }
+
+    public void setGraphics(Graphics graphics){
+        this.graphics = graphics;
     }
 }

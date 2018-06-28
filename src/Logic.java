@@ -1,6 +1,8 @@
+import java.util.List;
+
 public class Logic {
     Player player;
-    Monster[] monsters;
+    List<Monster> monstersList;
     Level level;
     Goal goal;
     int jumpCounter;
@@ -8,10 +10,10 @@ public class Logic {
     int xNextStep;
     boolean canJump = true;
 
-    public Logic(Player player, Level level, Monster[] monsters, Goal goal) {
+    public Logic(Player player, Level level, List<Monster> monstersList, Goal goal) {
         this.level = level;
         this.player = player;
-        this.monsters = monsters;
+        this.monstersList = monstersList;
         this.goal = goal;
     }
 
@@ -91,7 +93,7 @@ public class Logic {
     }
 
     public void moveMonsters() {
-        for (Monster monster : monsters) {
+        for (Monster monster : monstersList) {
             moveMonster(monster);
 
         }
@@ -99,23 +101,23 @@ public class Logic {
 
 
     public boolean isAlive() {
-        for (int i = 0; i < monsters.length; i++) {
-            if (collition(monsters[i],player)) {
+
+        for(Monster monster:monstersList){
+            if (collision(monster,player)) {
                 return false;
             }
-
         }
         return true;
     }
 
     public boolean isWin(){
-        if(collition(goal,player)){
+        if(collision(goal,player)){
             return true;
         }
         return false;
     }
 
-    private boolean collition(GameObject obj1, GameObject obj2){
+    private boolean collision(GameObject obj1, GameObject obj2){
         if (obj1.getX() == obj2.getX() && obj1.getY() == obj2.getY()) {
             return true;
         }

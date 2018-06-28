@@ -10,20 +10,15 @@ public class Monster extends GameObject {
         this.xVelocity = 1;
     }
 
-    public static Monster[] createMonsters(Level level) {
-        List<Monster> monsters = new ArrayList<>();
+    public static void updateMonstersList(Level level, List<Monster> monstersList) {
+        monstersList.clear();;
         for (int x = 0; x < level.getLevelArray().length; x++) {
             for (int y = 0; y < level.getLevelArray()[x].length; y++) {
                 if (level.getLevelArray()[x][y] == 2) {
-                    monsters.add(new Monster(x, y, " ", Terminal.Color.RED));
+                    monstersList.add(new Monster(x, y, " ", Terminal.Color.RED));
                     level.getLevelArray()[x][y] = 0;
                 }
-
             }
-
         }
-        Monster[] result = new Monster[monsters.size()];
-
-        return monsters.toArray(result);
     }
 }
