@@ -41,30 +41,30 @@ public class Graphics {
 
 
     public void drawLevelEditor() {
-        int[][] array = level.getLevelArray();
+        Blocks[][] array = level.getLevelArray();
         for (int x = 0; x < array.length; x++) {
             for (int y = 0; y < array[x].length; y++) {
-                if (array[x][y] == 1)
+                if (array[x][y] == Blocks.GROUND)
                     draw(x, y, Color.GREEN, " ");
-                if (array[x][y] == 0)
+                if (array[x][y] == Blocks.SKY)
                     draw(x, y, Color.BLUE, " ");
-                if (array[x][y] == 2)
+                if (array[x][y] == Blocks.MONSTER)
                     draw(x, y, Color.RED, " ");
-                if (array[x][y] == 3)
+                if (array[x][y] == Blocks.GOAL)
                     draw(x, y, Color.YELLOW, " ");
-                if(array[x][y] == 4)
+                if(array[x][y] == Blocks.PLAYER)
                     draw(x, y, Color.WHITE, " ");
             }
         }
     }
 
     public void drawLevel() {
-        int[][] array = level.getLevelArray();
+        Blocks[][] array = level.getLevelArray();
         for (int x = 0; x < array.length; x++) {
             for (int y = 0; y < array[x].length; y++) {
-                if (array[x][y] == 1)
+                if (array[x][y] == Blocks.GROUND)
                     draw(x, y, Color.GREEN, " ");
-                if (array[x][y] == 0)
+                if (array[x][y] == Blocks.SKY)
                     draw(x, y, Color.BLUE, " ");
             }
         }

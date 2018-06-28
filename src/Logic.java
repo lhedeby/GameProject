@@ -37,7 +37,7 @@ public class Logic {
         checkBoundariesX();
 
         //check if square is solid
-        if (level.getLevelArray()[xNextStep][player.getY()] != 1) {
+        if (level.getLevelArray()[xNextStep][player.getY()] != Blocks.GROUND) {
             this.player.setX(xNextStep);
         }
         player.xVelocity = 0;
@@ -49,7 +49,7 @@ public class Logic {
             yNextStep = player.getY() + 1;
         }
 
-        if (level.getLevelArray()[player.getX()][yNextStep] != 1) {
+        if (level.getLevelArray()[player.getX()][yNextStep] != Blocks.GROUND) {
             this.player.setY(yNextStep);
             canJump = false;
         } else {
@@ -64,7 +64,7 @@ public class Logic {
         }
         if (jumpCounter < JUMPHEIGHT) {
 
-            if (level.getLevelArray()[player.getX()][yNextStep] != 1) {
+            if (level.getLevelArray()[player.getX()][yNextStep] != Blocks.GROUND) {
                 this.player.setY(yNextStep);
             }
             jumpCounter++;
@@ -104,7 +104,7 @@ public class Logic {
                 xNextStep = monster.getX() + monster.xVelocity;
             }
         }
-        if (level.getLevelArray()[xNextStep][monster.getY()] != 1) {
+        if (level.getLevelArray()[xNextStep][monster.getY()] != Blocks.GROUND) {
             monster.setX(xNextStep);
         } else {
             monster.xVelocity *= -1;

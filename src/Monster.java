@@ -12,9 +12,9 @@ public class Monster extends GameObject {
         monstersList.clear();
         for (int x = 0; x < level.getLevelArray().length; x++) {
             for (int y = 0; y < level.getLevelArray()[x].length; y++) {
-                if (level.getLevelArray()[x][y] == 2) {
+                if (level.getLevelArray()[x][y] == Blocks.MONSTER) {
                     monstersList.add(new Monster(x, y, "\u2620", Terminal.Color.RED));
-                    level.getLevelArray()[x][y] = 0;
+                    level.getLevelArray()[x][y] = Blocks.SKY;
                 }
             }
         }

@@ -30,19 +30,19 @@ public class Levelmaker {
             } while (key == null);
             switch (key.getKind()) {
                 case F1:
-                    level.levelArray[x][y] = 1;
+                    level.levelArray[x][y] = Blocks.GROUND;
                     break;
                 case F2:
-                    level.levelArray[x][y] = 0;
+                    level.levelArray[x][y] = Blocks.SKY;
                     break;
                 case F3:
-                    level.levelArray[x][y] = 2;
+                    level.levelArray[x][y] = Blocks.MONSTER;
                     break;
                 case F4:
-                    level.levelArray[x][y] = 3;
+                    level.levelArray[x][y] = Blocks.GOAL;
                     break;
                 case F5:
-                    level.levelArray[x][y] = 4;
+                    level.levelArray[x][y] = Blocks.PLAYER;
                     break;
                 case ArrowDown:
                     window.getScreen().setCursorPosition(x, ++y);
@@ -83,10 +83,10 @@ public class Levelmaker {
 
     }
 
-    private static String intArrayToString(int[] array) {
+    private static String intArrayToString(Blocks[] array) {
         StringBuilder res = new StringBuilder();
         for(int i = 0; i < array.length; i++) {
-            res.append(array[i]);
+            res.append(array[i].getValue());
         }
         return res.toString();
     }

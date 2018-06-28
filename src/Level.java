@@ -2,13 +2,13 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 public class Level {
-    int[][] levelArray;
+    Blocks[][] levelArray;
 
     public Level(Window window) {
-        levelArray = new int[window.getWidth()][window.getHeight()];
+        levelArray = new Blocks[window.getWidth()][window.getHeight()];
         for(int i = 0; i < levelArray.length; i++) {
             for(int j = 0; j < levelArray[i].length; j++) {
-                levelArray[i][j] = 0;
+                levelArray[i][j] = Blocks.GROUND;
             }
         }
     }
@@ -26,7 +26,26 @@ public class Level {
                     break;
 
                 for(int i = 0; i < s.length(); i++) {
-                    levelArray[line][i] = Integer.parseInt(s.charAt(i) + "");
+                    int blockType = Integer.parseInt(s.charAt(i) + "");
+                    Blocks block = null;
+                    switch (blockType) {
+                        case 0:
+                            block = Blocks.SKY;
+                            break;
+                        case 1:
+                            block = Blocks.GROUND;
+                            break;
+                        case 2:
+                            block = Blocks.MONSTER;
+                            break;
+                        case 3:
+                            block = Blocks.GOAL;
+                                    break;
+                        case 4:
+                            block = Blocks.PLAYER;
+                            break;
+                    }
+                    levelArray[line][i] = block;
                 }
                 line++;
             }
@@ -37,7 +56,7 @@ public class Level {
 
     }
 
-    public int[][] getLevelArray() {
+    public Blocks[][] getLevelArray() {
         return levelArray;
     }
 
