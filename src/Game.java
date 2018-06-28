@@ -51,7 +51,7 @@ public class Game {
             if (start)
                 displayStartScreen();
 
-            if (!logic.isAlive())
+            if (!logic.isAlive() || !logic.isNotFallen())
                 displayDeathScreen();
 
             if (logic.isWin())
